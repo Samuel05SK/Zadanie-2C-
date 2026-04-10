@@ -8,6 +8,7 @@
             //jebo
             Console.WriteLine("Aďo je jebo");
             Console.WriteLine("SDADAS");
+            Console.WriteLine("Zase mu to nejde");
         }
     }
 }
