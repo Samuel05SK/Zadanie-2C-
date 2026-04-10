@@ -6,6 +6,7 @@
         {
             Console.WriteLine("Hello, World!");
             //jebo
+            Console.WriteLine("Aďo je jebo");
         }
     }
 }
