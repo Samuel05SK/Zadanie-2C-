@@ -6,8 +6,6 @@
         public double x;
         public double y;
 
-        
-
         public double Generator()
         {
             return -5 + (random.NextDouble()) * 10;
@@ -34,7 +32,6 @@
                 }       
             }
         }
-
     }
 
    
@@ -67,13 +64,13 @@
                 jednotlivci[Alex].mutate(mutationRate);
             }
 
-            public double baseGen()
+            public Individuals baseGen()
             {
                 jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
-                return jednotlivci[0].Fitness();
+                return jednotlivci[0];
             }
 
-            public double nextGen(double selectionRate, double mutationRate)
+            public Individuals nextGen(double selectionRate, double mutationRate)
             {
                 int pocetMrtvych = selection(selectionRate);
                 for (int i = 0; i < pocetMrtvych; i++)
@@ -122,7 +119,8 @@
             Population populacia = new Population(maxPopulation);
             for(int i = 0;i < 100;i++)
             {
-                Console.WriteLine(populacia.nextGen(0.2, 00.2));
+                var navrat = populacia.nextGen(0.2, 00.2);
+                Console.WriteLine(navrat.Fitness() + " \t " + navrat.x + " \t " + navrat.y + " \t ");
             }
 
             Console.ReadLine();
