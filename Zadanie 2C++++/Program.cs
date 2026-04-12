@@ -47,20 +47,44 @@ namespace Zadanie_2C____
     public class Population
     {
         List<Individuals> jednotlivci = new List<Individuals>();
-        public void selection(double selectionRate)
+        public int selection(double selectionRate)
         {
             jednotlivci.Sort((a, b) => a.Fitness().CompareTo(b.Fitness()));
             jednotlivci.Reverse();
             int dlzka = jednotlivci.Count;
             int alive = (int)Math.Round(dlzka * selectionRate);
-            int pocet_mrtvych = dlzka - alive;
-
-
+            int pocetMrtvych = dlzka - alive;
+            jednotlivci.RemoveRange(alive, pocetMrtvych);
+            return pocetMrtvych;
         }
 
         public void cloning(double mutationRate)
         {
-            
+            int velkostPopulacie = jednotlivci.Count;
+            Random random = new Random();
+            int klonovanýJedinec = random.Next(0, velkostPopulacie - 2);
+            jednotlivci.Add(new Individuals());
+            int Alex = velkostPopulacie; //Alex == klon
+            jednotlivci[Alex].x = jednotlivci[klonovanýJedinec].x;
+            jednotlivci[Alex].y = jednotlivci[klonovanýJedinec].y;
+            jednotlivci[Alex].mutate(mutationRate);
+        }
+
+        public double baseGen()
+        {
+            jednotlivci.Sort((a, b) => a.Fitness().CompareTo(b.Fitness()));
+            jednotlivci.Reverse();
+            return jednotlivci[0].Fitness();
+        }
+
+        public double nextGen(double selectionRate, double mutationRate)
+        {
+            int pocetMrtvych = selection(selectionRate);
+            for(int i = 0; i<pocetMrtvych; i++)
+            {
+                cloning(mutationRate);
+            }
+            return baseGen();
         }
 
         public Population(int maxPopulation)
@@ -102,6 +126,11 @@ namespace Zadanie_2C____
             while (FunkciaOk == false);
 
             Population populacia = new Population(maxPopulation);
+            for(int i = 0;i < 100;i++)
+            {
+                Console.WriteLine(populacia.nextGen(0.2, 0.02));
+            }
+
             Console.ReadLine();
         }
     }
