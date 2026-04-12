@@ -19,9 +19,7 @@ namespace Zadanie_2C____
 
         public double Fitness()
         {
-            double funkcna_hodnota = 0;
-            funkcna_hodnota = -Math.Cos(x) * Math.Cos(y) * Math.Exp(-(Math.Pow(x - Math.PI, 2)) + (Math.Pow(y - Math.PI, 2)));
-            return funkcna_hodnota;
+            return -Math.Cos(x) * Math.Cos(y) * Math.Exp(-(Math.Pow(x - Math.PI, 2)) + (Math.Pow(y - Math.PI, 2)));
         }
 
         public void mutate(double mutationRate)
@@ -30,7 +28,7 @@ namespace Zadanie_2C____
             double hodnota = random.NextDouble();
             if(hodnota < mutationRate)
             {
-                int randomXY = random.Next(1,2);
+                int randomXY = random.Next(1,3);
                 switch(randomXY)
                 {
                     case 1:
@@ -64,12 +62,19 @@ namespace Zadanie_2C____
         {
             int velkostPopulacie = jednotlivci.Count;
             Random random = new Random();
-            int klonovanýJedinec = random.Next(0, velkostPopulacie - 2);
+            int klonovanyJedinec = random.Next(0, velkostPopulacie - 2);
+            
             jednotlivci.Add(new Individuals());
             int Alex = velkostPopulacie; //Alex == klon
-            jednotlivci[Alex].x = jednotlivci[klonovanýJedinec].x;
-            jednotlivci[Alex].y = jednotlivci[klonovanýJedinec].y;
+            jednotlivci[Alex].x = jednotlivci[klonovanyJedinec].x;
+            jednotlivci[Alex].y = jednotlivci[klonovanyJedinec].y;
             jednotlivci[Alex].mutate(mutationRate);
+            
+            /*Individuals klon = new Individuals();
+            klon.x = jednotlivci[klonovanyJedinec].x;
+            klon.y = jednotlivci[klonovanyJedinec].y;
+            klon.mutate(mutationRate);
+            jednotlivci.Add(klon);*/
         }
 
         public double baseGen()
@@ -105,6 +110,9 @@ namespace Zadanie_2C____
     {
         static void Main(string[] args)
         {
+
+            //Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             int maxPopulation = 0;
             bool FunkciaOk = true;
             Console.WriteLine("Zadanie Variant F: Umelá krajina");
