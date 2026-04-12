@@ -7,13 +7,6 @@ namespace Zadanie_2C____
         private Random random = new Random();
         public double x;
         public double y;
-        public string Type { get; set; }
-
-
-
-
-
-
 
         public double Generator()
         {
@@ -46,8 +39,6 @@ namespace Zadanie_2C____
         }
     }
 
-   
-
     internal class Program
     {
         public static List<Individuals> jednotlivci = new List<Individuals>();
@@ -78,7 +69,7 @@ namespace Zadanie_2C____
 
             public Individuals baseGen()
             {
-                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
+                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness).ToList();
                 return jednotlivci[0];
             }
 
@@ -103,6 +94,7 @@ namespace Zadanie_2C____
 
             }
         }
+
         static void Main(string[] args)
         {
             int maxPopulation = 0;
@@ -126,10 +118,10 @@ namespace Zadanie_2C____
                     FunkciaOk = false;
                 }
             }
-                var navrat = populacia.nextGen(0.2, 00.2);
-                Console.WriteLine(navrat.Fitness() + " \t " + navrat.x + " \t " + navrat.y + " \t ");
-
+            while( FunkciaOk == false);
             Population populacia = new Population(maxPopulation);
+            var navrat = populacia.nextGen(0.2, 00.2);
+            Console.WriteLine(navrat.Fitness + " \t " + navrat.x + " \t " + navrat.y + " \t ");            
             for(int i = 0;i < 100;i++)
             {
                 Console.WriteLine(populacia.nextGen(0.2, 0.2));
