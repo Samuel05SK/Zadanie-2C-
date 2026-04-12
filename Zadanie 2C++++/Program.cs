@@ -13,7 +13,7 @@ namespace Zadanie_2C____
         {
             double hodnota;
             Random random = new Random();
-            hodnota = -100 + (random.NextDouble()) * 200;
+            hodnota = -10 + (random.NextDouble()) * 20;
             return hodnota;
         }
 
@@ -69,12 +69,6 @@ namespace Zadanie_2C____
             jednotlivci[Alex].x = jednotlivci[klonovanyJedinec].x;
             jednotlivci[Alex].y = jednotlivci[klonovanyJedinec].y;
             jednotlivci[Alex].mutate(mutationRate);
-            
-            /*Individuals klon = new Individuals();
-            klon.x = jednotlivci[klonovanyJedinec].x;
-            klon.y = jednotlivci[klonovanyJedinec].y;
-            klon.mutate(mutationRate);
-            jednotlivci.Add(klon);*/
         }
 
         public double baseGen()
