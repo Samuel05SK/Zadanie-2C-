@@ -10,9 +10,9 @@ namespace Zadanie_2C____
 
         public double Generator()
         {
-            double hodnota; 
+            double hodnota;
             Random random = new Random();
-            hodnota = -100 + (random.NextDouble()) *200;
+            hodnota = -100 + (random.NextDouble()) * 200;
             return hodnota;
         }
 
@@ -41,6 +41,7 @@ namespace Zadanie_2C____
                 }       
             }
         }
+
     }
 
     public class Population
@@ -53,6 +54,16 @@ namespace Zadanie_2C____
         public void cloning(double mutationRate)
         {
 
+        }
+        Population(int maxPopulation)
+        {
+            List<Individuals> jednotlivci = new List<Individuals>();
+            for(int i = 0; i < maxPopulation; i++)
+            {
+                jednotlivci.Add(new Individuals());
+                jednotlivci[i].x = jednotlivci[i].Generator();
+                jednotlivci[i].y = jednotlivci[i].Generator();
+            }
         }
     }
 
