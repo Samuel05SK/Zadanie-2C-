@@ -49,7 +49,16 @@ namespace Zadanie_2C____
     {
      
         List<Individuals> jednotlivci = new List<Individuals>();
-        
+        public void selection(double selectionRate)
+        {
+            jednotlivci.Sort((a, b) => a.Fitness().CompareTo(b.Fitness()));
+            jednotlivci.Reverse();
+            int dlzka = jednotlivci.Count;
+            int alive = (int)Math.Round(dlzka * selectionRate);
+            int pocet_mrtvych = dlzka - alive;
+
+
+        }
 
         public void cloning(double mutationRate)
         {
