@@ -6,8 +6,6 @@
         public double x;
         public double y;
 
-        private static Random random = new Random();
-
         public double Generator()
         {
             return -10 + (random.NextDouble()) * 20;
@@ -48,11 +46,7 @@
             
             public int selection(double selectionRate)
             {
-                jednotlivci = jednotlivci.OrderByDescending(ind => ind.Fitness()).ToList();
-                foreach (Individuals i in jednotlivci)
-                {
-                    Console.WriteLine("Fitness:    " + i.Fitness());
-                }
+                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
                 int dlzka = jednotlivci.Count;
                 int alive = (int)Math.Round(dlzka * selectionRate);
                 int pocetMrtvych = dlzka - alive;
@@ -73,7 +67,7 @@
 
             public double baseGen()
             {
-                jednotlivci = jednotlivci.OrderByDescending(ind => ind.Fitness()).ToList();
+                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
                 return jednotlivci[0].Fitness();
             }
 
@@ -126,7 +120,7 @@
             Population populacia = new Population(maxPopulation);
             for(int i = 0;i < 100;i++)
             {
-                Console.WriteLine(populacia.nextGen(0.2, 0.2));
+                Console.WriteLine(populacia.nextGen(0.2, 00.2));
             }
 
             Console.ReadLine();
