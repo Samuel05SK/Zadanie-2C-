@@ -48,14 +48,15 @@ namespace Zadanie_2C____
     {
         public void selection(double selectionRate)
         {
-
+            
         }
 
         public void cloning(double mutationRate)
         {
-
+            
         }
-        Population(int maxPopulation)
+
+        public Population(int maxPopulation)
         {
             List<Individuals> jednotlivci = new List<Individuals>();
             for(int i = 0; i < maxPopulation; i++)
@@ -71,7 +72,29 @@ namespace Zadanie_2C____
     {
         static void Main(string[] args)
         {
+            int maxPopulation = 0;
+            bool FunkciaOk = true;
+            Console.WriteLine("Zadanie Variant F: Umelá krajina");
+            Console.WriteLine("\n------------------------------------------\n");
+            do
+            {
+                FunkciaOk = true;
+                try
+                {
+                    Console.WriteLine("Zadaj celé číslo");
+                    maxPopulation = int.Parse(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("\n------------------------------------------");
+                    Console.WriteLine("Zadal/a si zlú hodnotu\n" + e);
+                    Console.WriteLine("------------------------------------------\n");
+                    FunkciaOk = false;
+                }
+            }
+            while (FunkciaOk == false);
 
+            Population populacia = new Population(maxPopulation);
             Console.ReadLine();
         }
     }
