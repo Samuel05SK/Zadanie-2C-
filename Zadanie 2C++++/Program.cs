@@ -16,7 +16,7 @@ namespace Zadanie_2C____
             return hodnota;
         }
 
-        public double Fitness(double x, double y)
+        public double Fitness()
         {
             double funkcna_hodnota = 0;
             funkcna_hodnota = -Math.Cos(x) * Math.Cos(y) * Math.Exp(-(Math.Pow(x - Math.PI, 2)) + (Math.Pow(y - Math.PI, 2)));
@@ -46,24 +46,33 @@ namespace Zadanie_2C____
 
     public class Population
     {
+        List<Individuals> jednotlivci = new List<Individuals>();
         public void selection(double selectionRate)
         {
+            jednotlivci.Sort(jednotlivci.Fitness());
+            jednotlivci.Reverse();
+            //var zoradenie = jednotlivci.OrderByDescending(Individuals.Fitness().ToList());
+            int dlzka = jednotlivci.Count;
+            double alive = Math.Round(dlzka * selectionRate);
+            int pocet_mrtvych = dlzka - (int)alive;
+            cloning(pocet_mrtvych);
 
         }
 
         public void cloning(double mutationRate)
         {
-
+        
         }
+
         Population(int maxPopulation)
         {
-            List<Individuals> jednotlivci = new List<Individuals>();
             for(int i = 0; i < maxPopulation; i++)
             {
                 jednotlivci.Add(new Individuals());
                 jednotlivci[i].x = jednotlivci[i].Generator();
                 jednotlivci[i].y = jednotlivci[i].Generator();
             }
+
         }
     }
 
