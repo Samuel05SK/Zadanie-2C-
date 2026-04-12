@@ -56,14 +56,23 @@ namespace Zadanie_2C____
             int dlzka = jednotlivci.Count;
             int alive = (int)Math.Round(dlzka * selectionRate);
             int pocet_mrtvych = dlzka - alive;
-
+            jednotlivci.RemoveRange(alive, dlzka);
 
         }
 
         public void cloning(double mutationRate)
         {
-            
+            int velkostpopulacie = jednotlivci.Count;
+            Random random = new Random();
+            int klonovanýJedinec = random.Next(0, velkostpopulacie - 2);
+            jednotlivci.Add(new Individuals());
+            int Alex = velkostpopulacie; //Alex == klon
+            jednotlivci[Alex].x = jednotlivci[klonovanýJedinec].x;
+            jednotlivci[Alex].y = jednotlivci[klonovanýJedinec].y;
+            jednotlivci[Alex].mutate(mutationRate);
         }
+
+        public void
 
         public Population(int maxPopulation)
         {
