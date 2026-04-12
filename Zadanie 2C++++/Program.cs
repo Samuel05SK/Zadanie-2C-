@@ -45,7 +45,15 @@ namespace Zadanie_2C____
 
     public class Population
     {
+        public void selection(double selectionRate)
+        {
 
+        }
+
+        public void cloning(double mutationRate)
+        {
+
+        }
     }
 
     internal class Program
