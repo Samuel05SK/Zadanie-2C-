@@ -9,12 +9,11 @@ namespace Zadanie_2C____
         public double x;
         public double y;
 
+        private static Random random = new Random();
+
         public double Generator()
         {
-            double hodnota;
-            Random random = new Random();
-            hodnota = -10 + (random.NextDouble()) * 20;
-            return hodnota;
+            return -10 + (random.NextDouble()) * 20;
         }
 
         public double Fitness()
@@ -24,20 +23,11 @@ namespace Zadanie_2C____
 
         public void mutate(double mutationRate)
         {
-            Random random = new Random();
-            double hodnota = random.NextDouble();
-            if(hodnota < mutationRate)
+            if(random.NextDouble() < mutationRate)
             {
                 int randomXY = random.Next(1,2);
-                switch(randomXY)
-                {
-                    case 1:
-                        x = Generator();
-                        break;
-                    case 2:
-                        y = Generator();
-                        break;
-                }       
+                if (randomXY == 1) { x = Generator(); }
+                else { y = Generator(); }      
             }
         }
 
@@ -104,8 +94,6 @@ namespace Zadanie_2C____
     {
         static void Main(string[] args)
         {
-
-            //Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             int maxPopulation = 0;
             bool FunkciaOk = true;
