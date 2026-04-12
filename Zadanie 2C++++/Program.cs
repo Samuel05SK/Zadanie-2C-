@@ -5,7 +5,7 @@
         public double x;
         public double y;
 
-        private static Random random = new Random();
+        private Random random = new Random();
 
         public double Generator()
         {
@@ -21,7 +21,7 @@
         {
             if(random.NextDouble() < mutationRate)
             {
-                int randomXY = random.Next(1,2);
+                int randomXY = random.Next(1,3);
                 if (randomXY == 1) { x = Generator(); }
                 else { y = Generator(); }      
             }
@@ -33,10 +33,15 @@
     {
      
         List<Individuals> jednotlivci = new List<Individuals>();
+        private Random random = new Random();
 
         public int selection(double selectionRate)
         {
-            jednotlivci.OrderByDescending(Individuals => Individuals.Fitness());
+            jednotlivci = jednotlivci.OrderByDescending(Individuals => Individuals.Fitness()).ToList();
+            foreach (Individuals i in jednotlivci)
+            {
+                Console.WriteLine("Fitness:     " + i.Fitness());
+            }
             int dlzka = jednotlivci.Count;
             int alive = (int)Math.Round(dlzka * selectionRate);
             int pocetMrtvych = dlzka - alive;
@@ -47,7 +52,6 @@
         public void cloning(double mutationRate)
         {
             int velkostPopulacie = jednotlivci.Count;
-            Random random = new Random();
             int klonovanyJedinec = random.Next(0, velkostPopulacie - 2);
             
             jednotlivci.Add(new Individuals());
@@ -59,7 +63,7 @@
 
         public double baseGen()
         {
-            jednotlivci.OrderByDescending(Individuals => Individuals.Fitness());
+            jednotlivci = jednotlivci.OrderByDescending(Individuals => Individuals.Fitness()).ToList();
             return jednotlivci[0].Fitness();
         }
 
