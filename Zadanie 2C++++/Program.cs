@@ -19,7 +19,7 @@ namespace Zadanie_2C____
 
         public double Fitness()
         {
-            return -Math.Cos(x) * Math.Cos(y) * Math.Exp(-(Math.Pow(x - Math.PI, 2)) + (Math.Pow(y - Math.PI, 2)));
+            return 0.26 * (Math.Pow(x, 2) + Math.Pow(y, 2) - 0.48 * x * y);
         }
 
         public void mutate(double mutationRate)
@@ -28,7 +28,7 @@ namespace Zadanie_2C____
             double hodnota = random.NextDouble();
             if(hodnota < mutationRate)
             {
-                int randomXY = random.Next(1,3);
+                int randomXY = random.Next(1,2);
                 switch(randomXY)
                 {
                     case 1:
