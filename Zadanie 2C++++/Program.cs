@@ -1,21 +1,26 @@
-﻿namespace Zadanie_2C____
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Zadanie_2C____
 {
     public class Individuals
     {
         private Random random = new Random();
         public double x;
         public double y;
+        public string Type { get; set; }
 
-        
 
         public double Generator()
         {
             return -5 + (random.NextDouble()) * 10;
         }
 
-        public double Fitness()
+        public double Fitness
         {
-            return Math.Pow((Math.Pow(x, 2) + y - 11), 2) + Math.Pow((x + Math.Pow(y, 2) - 7), 2);
+            get
+            {
+                return Math.Pow((Math.Pow(x, 2) + y - 11), 2) + Math.Pow((x + Math.Pow(y, 2) - 7), 2);
+            }
         }
 
         public void mutate(double mutationRate)
@@ -48,7 +53,7 @@
             
             public int selection(double selectionRate)
             {
-                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
+                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness).ToList();
                 int dlzka = jednotlivci.Count;
                 int alive = (int)Math.Round(dlzka * selectionRate);
                 int pocetMrtvych = dlzka - alive;
@@ -69,8 +74,8 @@
 
             public double baseGen()
             {
-                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
-                return jednotlivci[0].Fitness();
+                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness).ToList();
+                return jednotlivci[0].Fitness;
             }
 
             public double nextGen(double selectionRate, double mutationRate)
@@ -122,7 +127,7 @@
             Population populacia = new Population(maxPopulation);
             for(int i = 0;i < 100;i++)
             {
-                Console.WriteLine(populacia.nextGen(0.2, 0.2));
+                Console.WriteLine(populacia.nextGen(0.2, 0.2) +" --- Hodnota x: " + jednotlivci[0].x +", a hodnota y: "+ jednotlivci[0].y);
             }
 
             Console.ReadLine();
