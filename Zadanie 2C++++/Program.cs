@@ -6,16 +6,16 @@
         public double x;
         public double y;
 
-        private Random random = new Random();
+        
 
         public double Generator()
         {
-            return -10 + (random.NextDouble()) * 20;
+            return -5 + (random.NextDouble()) * 10;
         }
 
         public double Fitness()
         {
-            return 0.26 * (Math.Pow(x, 2) + Math.Pow(y, 2) - 0.48 * x * y);
+            return Math.Pow((Math.Pow(x, 2) + y - 11), 2) + Math.Pow((x + Math.Pow(y, 2) - 7), 2);
         }
 
         public void mutate(double mutationRate)
@@ -48,11 +48,7 @@
             
             public int selection(double selectionRate)
             {
-                jednotlivci = jednotlivci.OrderByDescending(ind => ind.Fitness()).ToList();
-                foreach (Individuals i in jednotlivci)
-                {
-                    Console.WriteLine("Fitness:    " + i.Fitness());
-                }
+                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
                 int dlzka = jednotlivci.Count;
                 int alive = (int)Math.Round(dlzka * selectionRate);
                 int pocetMrtvych = dlzka - alive;
@@ -73,7 +69,7 @@
 
             public double baseGen()
             {
-                jednotlivci = jednotlivci.OrderByDescending(ind => ind.Fitness()).ToList();
+                jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness()).ToList();
                 return jednotlivci[0].Fitness();
             }
 
