@@ -5,6 +5,12 @@
         public double x;
         public double y;
 
+        public double Generator()
+        {
+            Random ran = new Random();
+            ran.NextDouble();
+        }
+
         public double Fitness(double x, double y)
         {
             double funkcna_hodnota;
