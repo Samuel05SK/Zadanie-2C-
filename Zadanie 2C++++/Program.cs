@@ -6,11 +6,11 @@
         public double x;
         public double y;
 
+        private static Random random = new Random();
+
         public double Generator()
         {
-            double hodnota;
-            hodnota = -10 + (random.NextDouble()) * 20;
-            return hodnota;
+            return -10 + (random.NextDouble()) * 20;
         }
 
         public double Fitness()
@@ -20,8 +20,7 @@
 
         public void mutate(double mutationRate)
         {
-            double hodnota = random.NextDouble();
-            if(hodnota < mutationRate)
+            if(random.NextDouble() < mutationRate)
             {
                 int randomXY = random.Next(1,3);
                 switch(randomXY)
