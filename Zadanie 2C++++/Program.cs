@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-
-namespace Zadanie_2C____
+﻿namespace Zadanie_2C____
 {
     public class Individuals
     {
@@ -37,10 +33,10 @@ namespace Zadanie_2C____
     {
      
         List<Individuals> jednotlivci = new List<Individuals>();
+
         public int selection(double selectionRate)
         {
-            jednotlivci.Sort((a, b) => a.Fitness().CompareTo(b.Fitness()));
-            jednotlivci.Reverse();
+            jednotlivci.OrderByDescending(Individuals => Individuals.Fitness());
             int dlzka = jednotlivci.Count;
             int alive = (int)Math.Round(dlzka * selectionRate);
             int pocetMrtvych = dlzka - alive;
@@ -63,8 +59,7 @@ namespace Zadanie_2C____
 
         public double baseGen()
         {
-            jednotlivci.Sort((a, b) => a.Fitness().CompareTo(b.Fitness()));
-            jednotlivci.Reverse();
+            jednotlivci.OrderByDescending(Individuals => Individuals.Fitness());
             return jednotlivci[0].Fitness();
         }
 
@@ -106,6 +101,7 @@ namespace Zadanie_2C____
                 {
                     Console.WriteLine("Zadaj celé číslo");
                     maxPopulation = int.Parse(Console.ReadLine());
+                    if (maxPopulation < 4) throw new Exception("Hodnota musí byť väčšia ako 3");
                 }
                 catch (Exception e)
                 {
