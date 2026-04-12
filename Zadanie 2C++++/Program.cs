@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Zadanie_2C____
@@ -46,18 +47,9 @@ namespace Zadanie_2C____
 
     public class Population
     {
+     
         List<Individuals> jednotlivci = new List<Individuals>();
-        public void selection(double selectionRate)
-        {
-            jednotlivci.Sort(jednotlivci.Fitness());
-            jednotlivci.Reverse();
-            //var zoradenie = jednotlivci.OrderByDescending(Individuals.Fitness().ToList());
-            int dlzka = jednotlivci.Count;
-            double alive = Math.Round(dlzka * selectionRate);
-            int pocet_mrtvych = dlzka - (int)alive;
-            cloning(pocet_mrtvych);
-
-        }
+        
 
         public void cloning(double mutationRate)
         {
