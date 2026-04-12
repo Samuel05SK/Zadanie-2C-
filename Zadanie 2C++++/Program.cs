@@ -6,14 +6,16 @@
         public double x;
         public double y;
 
+        
+
         public double Generator()
         {
-            return -10 + (random.NextDouble()) * 20;
+            return -5 + (random.NextDouble()) * 10;
         }
 
         public double Fitness()
         {
-            return 0.26 * (Math.Pow(x, 2) + Math.Pow(y, 2) - 0.48 * x * y);
+            return Math.Pow((Math.Pow(x, 2) + y - 11), 2) + Math.Pow((x + Math.Pow(y, 2) - 7), 2);
         }
 
         public void mutate(double mutationRate)
