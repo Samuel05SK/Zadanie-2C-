@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Zadanie_2C____
 {
@@ -10,8 +11,8 @@ namespace Zadanie_2C____
         public double Generator()
         {
             double hodnota; 
-            Random ran = new Random();
-            hodnota = -100 + (ran.NextDouble()) *200;
+            Random random = new Random();
+            hodnota = -100 + (random.NextDouble()) *200;
             return hodnota;
         }
 
@@ -19,6 +20,25 @@ namespace Zadanie_2C____
         {
             double funkcna_hodnota = 0;
             return funkcna_hodnota;
+        }
+
+        public void mutate(double mutationRate)
+        {
+            Random random = new Random();
+            double hodnota = random.NextDouble();
+            if(hodnota < mutationRate)
+            {
+                int randomXY = random.Next(1,2);
+                switch(randomXY)
+                {
+                    case 1:
+                        x = Generator();
+                        break;
+                    case 2:
+                        y = Generator();
+                        break;
+                }       
+            }
         }
     }
 
