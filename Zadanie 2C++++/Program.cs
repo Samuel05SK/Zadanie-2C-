@@ -117,7 +117,7 @@ namespace Zadanie_2C____
                 return baseGen();
             }
 
-            public Population(int maxPopulation)
+            public Population(uint maxPopulation)
             {
                 for (int i = 0; i < maxPopulation; i++)
                 {
@@ -132,28 +132,24 @@ namespace Zadanie_2C____
 
         static void Main(string[] args)
         {
-            int maxPopulation = 0;
-            bool FunkciaOk = true;
+            uint maxPopulation = 0;
+
             Console.WriteLine("Zadanie Variant F: Umelá krajina");
             Console.WriteLine("\n------------------------------------------\n");
-            do
-            {
-                FunkciaOk = true;
+
                 try
                 {
                     Console.WriteLine("Zadaj celé číslo");
-                    maxPopulation = int.Parse(Console.ReadLine());
+                    maxPopulation = uint.Parse(Console.ReadLine());
                     if (maxPopulation < 4) throw new Exception("Hodnota musí byť väčšia ako 3");
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("\n------------------------------------------");
                     Console.WriteLine("Zadal/a si zlú hodnotu\n" + e);
-                    Console.WriteLine("------------------------------------------\n");
-                    FunkciaOk = false;
+                    Console.WriteLine("------------------------------------------\n");           
                 }
-            }
-            while( FunkciaOk == false);
+
             Population populacia = new Population(maxPopulation);    
             Bod bodik = new Bod();
             for(int i = 0;i < 100;i++)
