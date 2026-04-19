@@ -101,6 +101,21 @@ namespace Zadanie_2C____
                 jednotlivci[Alex].mutate(mutationRate);
             }
 
+            public void krizenie()
+            {
+                int velkostPopulacie = jednotlivci.Count;
+                int rodic1 = random.Next(0, velkostPopulacie - 1);
+                int rodic2;
+                do
+                {
+                    rodic2 = random.Next(0, velkostPopulacie - 1);
+                }
+                while (rodic1 == rodic2);
+                jednotlivci.Add(new Individuals());
+                jednotlivci[velkostPopulacie].x = jednotlivci[rodic1].x;
+                jednotlivci[velkostPopulacie].y = jednotlivci[rodic2].y;
+            }
+
             public Individuals baseGen()
             {
                 jednotlivci = jednotlivci.OrderBy(ind => ind.Fitness).ToList();
@@ -112,7 +127,8 @@ namespace Zadanie_2C____
                 int pocetMrtvych = selection(selectionRate);
                 for (int i = 0; i < pocetMrtvych; i++)
                 {
-                    cloning(mutationRate);
+                    if(random.Next(0,2)==1) cloning(mutationRate);
+                    else krizenie();
                 }
                 return baseGen();
             }
