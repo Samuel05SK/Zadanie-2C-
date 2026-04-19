@@ -93,7 +93,7 @@ namespace Zadanie_2C____
             public void cloning(double mutationRate)
             {
                 int velkostPopulacie = jednotlivci.Count;
-                int klonovanyJedinec = random.Next(0, velkostPopulacie - 1);
+                int klonovanyJedinec = random.Next(0, velkostPopulacie);
                 jednotlivci.Add(new Individuals());
                 int Alex = velkostPopulacie; //Alex == klon
                 jednotlivci[Alex].x = jednotlivci[klonovanyJedinec].x;
@@ -104,11 +104,11 @@ namespace Zadanie_2C____
             public void krizenie()
             {
                 int velkostPopulacie = jednotlivci.Count;
-                int rodic1 = random.Next(0, velkostPopulacie - 1);
+                int rodic1 = random.Next(0, velkostPopulacie);
                 int rodic2;
                 do
                 {
-                    rodic2 = random.Next(0, velkostPopulacie - 1);
+                    rodic2 = random.Next(0, velkostPopulacie);
                 }
                 while (rodic1 == rodic2);
                 jednotlivci.Add(new Individuals());
@@ -127,8 +127,8 @@ namespace Zadanie_2C____
                 int pocetMrtvych = selection(selectionRate);
                 for (int i = 0; i < pocetMrtvych; i++)
                 {
-                    if(random.Next(0,2)==1) cloning(mutationRate);
-                    else krizenie();
+                    if (random.Next(0, 2) == 1 && jednotlivci.Count >= 2) krizenie();
+                    else cloning(mutationRate);
                 }
                 return baseGen();
             }
