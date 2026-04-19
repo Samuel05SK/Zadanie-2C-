@@ -133,10 +133,12 @@ namespace Zadanie_2C____
         static void Main(string[] args)
         {
             uint maxPopulation = 0;
-
+            bool funkciaOk;
             Console.WriteLine("Zadanie Variant F: Umelá krajina");
             Console.WriteLine("\n------------------------------------------\n");
-
+            do
+            {
+                funkciaOk = true;
                 try
                 {
                     Console.WriteLine("Zadaj celé číslo");
@@ -147,9 +149,11 @@ namespace Zadanie_2C____
                 {
                     Console.WriteLine("\n------------------------------------------");
                     Console.WriteLine("Zadal/a si zlú hodnotu\n" + e);
-                    Console.WriteLine("------------------------------------------\n");           
+                    Console.WriteLine("------------------------------------------\n");
+                    funkciaOk = false;
                 }
-
+            }
+            while(funkciaOk ==  false);
             Population populacia = new Population(maxPopulation);    
             Bod bodik = new Bod();
             for(int i = 0;i < 100;i++)
